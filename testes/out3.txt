@@ -1,0 +1,33 @@
+--- ÁRVORE SINTÁTICA GERADA ---
+MAIN_BLOCK
+ STMT_LIST
+  STMT_LIST
+   SINAL_VAR_INIT
+    TYPE (astro)
+    INIT
+     ID (resultado)
+     NUM_INT (0)
+  TRAJETORIA_FOR
+   ID (i)
+   NUM_INT (0)
+   NUM_INT (5)
+   NUM_INT (1)
+   BLOCK
+    STMT_LIST
+     STMT_LIST
+      STMT_LIST
+       ASSIGN
+        ID (resultado)
+        MULT
+         ID (i)
+         NUM_INT (2)
+      ASSIGN
+       ID (resultado)
+       ADD
+        ID (resultado)
+        NUM_INT (10)
+     ASSIGN
+      ID (resultado)
+      MOD
+       ID (resultado)
+       NUM_INT (4)
