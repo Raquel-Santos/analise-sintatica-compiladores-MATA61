@@ -41,8 +41,8 @@ bison -d parser.y
 ````
 Arquivos gerados:
 
-parser.tab.c
-parser.tab.h
+- parser.tab.c
+- parser.tab.h
 
 ### 2.4 Geração do Scanner Léxico
 
