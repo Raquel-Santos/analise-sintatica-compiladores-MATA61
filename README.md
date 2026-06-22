@@ -21,10 +21,11 @@ Para compilar o projeto é necessário possuir as seguintes ferramentas instalad
 - GCC
 
 ### 2.2 Estrutura dos Arquivos
-parser.y
-cosmoScript.l
-parser.tab.h
-parser.tab.c
+
+- parser.y
+- cosmoScript.l
+- parser.tab.h
+- parser.tab.c
 
 Onde:
 
@@ -482,8 +483,4 @@ O tratamento de erros permite identificar rapidamente problemas sintáticos.
 
 ## 11. Conclusão
 
-O analisador sintático da linguagem OrbitLang foi desenvolvido utilizando Flex e Bison, atendendo aos requisitos estabelecidos pela disciplina.
-
-A linguagem implementa variáveis, vetores, expressões aritméticas, estruturas condicionais, estruturas de repetição e funções com parâmetros e retorno tipado.
-
-Além disso, a construção automática da AST permite visualizar a estrutura sintática dos programas analisados, servindo como base para futuras etapas de um compilador.
+O analisador sintático da linguagem OrbitLang foi desenvolvido utilizando Flex e Bison, atendendo aos requisitos estabelecidos pela disciplina. A linguagem implementa variáveis, vetores, expressões aritméticas, estruturas condicionais, estruturas de repetição e funções com parâmetros e retorno tipado. Além disso, a construção automática da AST permite visualizar a estrutura sintática dos programas analisados.
