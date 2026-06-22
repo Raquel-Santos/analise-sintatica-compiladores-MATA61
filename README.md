@@ -36,6 +36,8 @@ Onde:
 
 ### 2.3 Geração do Parser
 
+Dentro do diretório /src execute:
+
 ````
 bison -d parser.y
 ````
@@ -46,6 +48,8 @@ Arquivos gerados:
 
 ### 2.4 Geração do Scanner Léxico
 
+Dentro do diretório /src execute:
+
 ````
 flex cosmoScript.l
 ````
@@ -54,6 +58,8 @@ Arquivo gerado:
 lex.yy.c
 
 ### 2.5 Compilação
+
+Dentro do diretório /src execute:
 ````
 gcc parser.tab.c lex.yy.c -o cosmoScript
 ````
@@ -62,6 +68,8 @@ Executável gerado:
 cosmoScript
 
 ### 2.6 Execução
+
+Copie os arquivos de teste para o diretório /src execute:
 ````
 ./cosmoScript < nome_do_programa.cosmo
 ````
