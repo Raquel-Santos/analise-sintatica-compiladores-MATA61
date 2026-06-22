@@ -1,0 +1,38 @@
+--- ÁRVORE SINTÁTICA GERADA ---
+MAIN_BLOCK
+ STMT_LIST
+  STMT_LIST
+   STMT_LIST
+    STMT_LIST
+     SINAL_VAR_INIT
+      TYPE (astro)
+      INIT
+       ID (velocidade)
+       NUM_INT (10)
+    SINAL_VAR_INIT
+     TYPE (nebula)
+     INIT
+      ID (energia)
+      NUM_FLOAT (75.5)
+   SINAL_ARRAY
+    TYPE (astro)
+    FROTA_ARRAY_ID (sensores)
+    SIZE (5)
+  ECLIPSE_IF_ELSE
+   COND
+    COMPARISON
+     ID (energia)
+     OP (>)
+     NUM_FLOAT (50.0)
+   BLOCK
+    STMT_LIST
+     ASSIGN
+      ID (velocidade)
+      ADD
+       ID (velocidade)
+       NUM_INT (5)
+   BLOCK
+    STMT_LIST
+     ASSIGN
+      ID (velocidade)
+      NUM_INT (0)
