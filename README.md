@@ -1,454 +1,489 @@
-# Trabalho 2 – Analisador Sintático da OrbitLang
+# Documentação do Trabalho 2 – Analisador Sintático da Linguagem OrbitLang
 
-## 1. Objetivo do Trabalho
-O objetivo deste trabalho é desenvolver um analisador sintático utilizando Flex e Bison para a linguagem OrbitLang, criada no Trabalho 1 de MATA61.
+## 1. Introdução
 
-## 2. Características da Linguagem OrbitLang
-A OrbitLang, inspirada na missão espacial Artemis II da NASA, possui a temática espacial e atende aos requisitos propostos pela disciplina.
+O objetivo deste trabalho foi desenvolver um analisador sintático para a linguagem OrbitLang utilizando a ferramenta Bison, integrado ao analisador léxico desenvolvido anteriormente com Flex no trabalho 1.
 
-### 2.1 Paradigma
+A linguagem OrbitLang foi criada especificamente para este trabalho e possui temática espacial inspirada na missão espacial Artemis II. A linguagem atende aos requisitos propostos nos requisitos do trabalho, permitindo a declaração de variáveis, vetores, funções, estruturas condicionais, estruturas de repetição e expressões aritméticas.
+
+Além da análise sintática, foi implementada a geração automática de uma Árvore Sintática Abstrata (AST), permitindo visualizar a estrutura hierárquica do programa analisado.
+
+---
+
+## 2. Compilação e Execução
+
+### 2.1 Dependências
+
+Para compilar o projeto é necessário possuir as seguintes ferramentas instaladas:
+
+- Flex
+- Bison
+- GCC
+
+### 2.2 Estrutura dos Arquivos
+parser.y
+cosmoScript.l
+parser.tab.h
+parser.tab.c
+
+Onde:
+
+- **parser.y**: analisador sintático desenvolvido com Bison;
+- **CosmoScript.l**: analisador léxico desenvolvido com Flex;
+- **parser.tab.h**: definição das estruturas da AST;
+- **parser.tab.c**: implementação das operações da AST.
+
+### 2.3 Geração do Parser
+
+````
+bison -d parser.y
+````
+Arquivos gerados:
+
+parser.tab.c
+parser.tab.h
+
+### 2.4 Geração do Scanner Léxico
+
+````
+flex cosmoScript.l
+````
+Arquivo gerado:
+
+lex.yy.c
+
+### 2.5 Compilação
+````
+gcc parser.tab.c lex.yy.c -o cosmoScript
+````
+Executável gerado:
+
+cosmoScript
+
+### 2.6 Execução
+````
+./cosmoScript < programa.cosmo
+````
+Exemplo:
+````
+./cosmoScript < teste1.cosmo
+````
+
+---
+
+## 3. Alterações em Relação ao Trabalho 1
+
+No Trabalho 1 foi implementado apenas o analisador léxico.
+
+No Trabalho 2 foram adicionados:
+
+- Regras sintáticas utilizando Bison;
+- Controle de precedência entre operadores;
+- Estruturas condicionais;
+- Estruturas de repetição;
+- Definição de funções;
+- Chamada de funções;
+- Construção automática da AST;
+- Impressão da árvore sintática.
+
+As palavras reservadas e os tokens definidos anteriormente foram mantidos.
+
+---
+
+## 4. Características da Linguagem OrbitLang
+
+### 4.1 Paradigma
+
 A linguagem é:
-- Imperativa
-- Compatível com ASCII
-- Fortemente tipada
-- Tipagem estática
 
-### 2.2 Tipos de dados
+- Imperativa;
+- Compatível com ASCII;
+- Fortemente tipada;
+- Tipagem estática.
 
-  |**Tipo**|**Palavra Reservada**|**Descrição**|
-  |-|-|-|   
-  |Inteiro|astro|Valores inteiros|   
-  |Float|nebula|Valores de ponto flutuante|
-  |Void|vacuo|Funções sem retorno|
+### 4.2 Tipos de Dados
 
-### 2.3 Declaração de Variáveis
+|**Tipo**|**Palavra Reservada**|**Descrição**|
+|-|-|-|
+|Inteiro| astro| Valores inteiros|
+|Float| nebula| Valores de ponto flutuante|
+|Void| vacuo| Funções sem retorno|
 
-Exemplo:
-```
+**Conclusão:**
+
+Os tipos implementados permitem manipular valores numéricos e definir funções com ou sem retorno.
+
+### 4.3 Declaração de Variáveis
+
+**Exemplo:**
+
+````
 sinal astro velocidade = 100;
-```
-Significado:
-```
-tipo: astro
-nome: velocidade
-valor inicial: 100
-```
+````
 
-### 2.4 Declaração de Vetores
+**Significado:**
 
-Exemplo:
-```
+- **sinal**: declaração de variável;
+- **astro**: tipo inteiro;
+- **velocidade**: identificador;
+- **100**: valor inicial.
+
+**Conclusão:**
+
+A linguagem permite declaração e inicialização de variáveis com tipagem estática.
+
+### 4.4 Declaração de Vetores
+
+**Exemplo:**
+````
 frota astro sensores[10];
-```
-Significado:
-```
-vetor de inteiros
-10 posições
-```
+````
 
-### 2.5 Estrutura Condicionais
+**Significado:**
 
-Simples:
-```
-eclipse velocidade > 50{
+- vetor do tipo inteiro;
+- identificador "sensores";
+- capacidade para 10 elementos.
+
+**Conclusão:**
+
+Os vetores permitem armazenar múltiplos valores do mesmo tipo.
+
+### 4.5 Estruturas Condicionais
+
+**Condicional simples:**
+
+````
+eclipse velocidade > 50 {
 }
-```
-Composta:
-```
-eclipse velocidade > 50{
-}supernova{
+````
+
+**Condicional composta:**
+
+````
+eclipse velocidade > 50 {
 }
-```
-
-### 2.6 Estrutura de Repetição
-
-While:
-```
-orbitar energia > 0{
+supernova {
 }
-```
-For:
-```
-trajetoria i em 0 ate 10 passo 1{
+````
+**Conclusão:**
+
+As estruturas condicionais permitem a tomada de decisões durante a execução do programa.
+
+### 4.6 Estruturas de Repetição
+
+**While:**
+````
+orbitar energia > 0 {
 }
-```
+````
+**For:**
+````
+trajetoria i em 0 ate 10 passo 1 {
+}
+````
+**Conclusão:**
 
-### 2.7 Funções
+As estruturas de repetição permitem executar comandos diversas vezes de forma controlada.
 
-Exemplo:
-```
-propulsor astro soma(
-    astro a,
-    astro b
-)
+### 4.7 Funções
+````
+propulsor astro soma(astro a, astro b)
 {
-  transmitir a+b;
+    transmitir a + b;
 }
-```
+````
+**Conclusão:**
 
-## 3. Estrutura Gerak do Projeto
-O projeto foi dividido em quatro arquivos:
+As funções permitem modularizar o código e reutilizar funcionalidades.
 
-- orbit.l
-- orbit.y
-- ast.h
-- ast.c
+---
 
-### 3.1 orbit.l
+## 5. Estrutura Geral do Projeto
+
+O projeto foi dividido em quatro módulos principais:
+
+- parser.y
+- cosmoScript.l
+- parser.tab.h
+- parser.tab.c
+
+### 5.1 cosmoScript.l
+
 Responsável pela análise léxica.
 
-Funções:
-- Reconhecer palavras reservadas
-- Reconhecer números
-- Reconhecer Identificadores
-- Reconhercer Operadores
-- Reconhecer Delimitadores
-- Ignorar Comentários
-- Enviar tokens para o Bison
+**Principais Funções:**
 
-### 3.2 orbit.y
+- Reconhecer palavras reservadas;
+- Reconhecer identificadores;
+- Reconhecer números inteiros;
+- Reconhecer números float;
+- Reconhecer operadores aritméticos;
+- Reconhecer operadores de comparação;
+- Reconhecer delimitadores;
+- Ignorar comentários;
+- Ignorar espaços em branco;
+- Enviar tokens para o Bison.
+
+**Conclusão:**
+
+O arquivo "cosmoScript.l" converte o código-fonte em uma sequência de tokens.
+
+### 5.2 parser.y
+
 Responsável pela análise sintática.
 
-Funções:
-- Validar a gramática
-- Verificar a estrutura do programa
-- Construir a AST
+**Principais Funções:**
 
-### 3.3 ast.h
+- Definir a gramática da linguagem;
+- Validar a estrutura dos programas;
+- Construir a AST;
+- Detectar erros sintáticos.
+
+**Conclusão:**
+
+O arquivo "parser.y" garante que os programas sigam as regras sintáticas da linguagem.
+
+### 5.3 parser.tab.h
+
 Responsável por definir a estrutura da AST.
 
-### 3.4 ast.c
-Responsável por implementar:
+**Principais Funções:**
 
-- Criação dos nós
-- Ligação entre nós
-- Impressão da árvore
-- Liberação de memória
+- Definir os nós da AST;
+- Declarar as funções de manipulação da árvore.
 
-## 4. Projeto da AST
+## 5.4 parser.tab.c
 
-### 4.1 Objetivo
-Representar a estrutura lógica do programa reconhecido.
+**Responsável por implementar:**
 
-Exemplo:
+- Criação dos nós;
+- Inserção de filhos;
+- Impressão da AST;
+- Liberação de memória.
 
-- Código:
-```
-sinal astro velocidade = 100;
-```
+**Conclusão:**
 
-- Árvore:
-```
-DECL_VAR
-├── TIPO(astro)
-├── ID(velocidade)
-└── INT(100)
-```
+Os arquivos "parser.tab.h" e "parser.tab.c" implementam toda a infraestrutura da árvore sintática.
 
-### 4.2 Estrutura Escolhida
-Foi adotada a técnica: 
+---
 
-```
-Child-Sibling
-```
+## 6. Estrutura da AST
 
-### 4.3 Estrutura do nó
-Arquivo:
+A AST foi implementada utilizando uma estrutura dinâmica composta por:
 
-```
-ast.h
-```
+- Tipo do nó;
+- Valor associado ao nó;
+- Vetor de filhos;
+- Quantidade de filhos.
 
-```
+````
 typedef struct ASTNode {
-
-    char *label;
-
-    struct ASTNode *child;
-
-    struct ASTNode *sibling;
-
+    char *type;
+    char *value;
+    struct ASTNode **children;
+    int child_count;
 } ASTNode;
+````
+**Exemplos de nós:**
+
+- MAIN_BLOCK
+- SINAL_VAR
+- SINAL_ARRAY
+- ASSIGN
+- ECLIPSE_IF
+- ORBITAR_WHILE
+- TRAJETORIA_FOR
+- PROPULSOR_FUNC
+- FUNC_CALL
+- TRANSMITIR_RETURN
+
+**Conclusão:**
+
+A estrutura adotada facilita a representação hierárquica dos programas.
+
+---
+
+## 7. Gramática Principal
+
+Regra inicial:
+```
+program ::= main_block
 ```
 
-### 4.4 Significado dos Campos
-**label**
-
-Texto armazenado no nó.
-
-Exemplo:
-
+Bloco principal:
 ```
-PROGRAMA
-
-IF
-
-ID(velocidade)
-
-INT(100)
+main_block ::= orbitA { stmt_list } decolar
 ```
 
-**child**
-Primeiro filho do nó.
+Todo programa deve possuir:
 
-**sibling**
-Próximo irmão do nó.
+- Palavra inicial "orbitA";
+- Lista de comandos;
+- Palavra final "decolar".
 
-### 4.5 Justificativa
-Essa representação foi escolhida porque:
+**Conclusão:**
 
-- Consome pouca memória
-- Permite número variável de filhos
-- É simples de implementar no Bison
+Essa regra define a estrutura básica de qualquer programa OrbitLang.
 
-## 5. Implementação da AST
-Arquivo:
+---
 
-```
-ast.c
-```
+## 8. Regras de Produção e Justificativas
 
-## 5.1 createNode()
-Objetivo: Criar um novo nó.
+### 8.1 Declaração de Variáveis
+```
+sinal tipo identificador ;
+```
+**Justificativa:**
 
-Exemplo:
+Permite criar variáveis com tipagem estática.
 
+### 8.2 Declaração de Vetores
 ```
-ASTNode *node =
-    createNode("PROGRAMA");
+frota tipo identificador [ tamanho ];
 ```
+**Justificativa:**
 
-## 5.2 addChild()
-Objetivo: Adicionar filhos a um nó.
+Permite armazenar coleções de valores do mesmo tipo.
 
-Exemplo:
+### 8.3 Atribuições
 
+Exemplos:
 ```
-addChild(decl, tipo);
-addChild(decl, id);
-addChild(decl, valor);
+velocidade = 100;
+sensores[2] = 50;
 ```
+**Justificativa:**
 
-Resultado:
+Permite modificar variáveis e elementos de vetores.
 
-```
-DECL_VAR
-├── TIPO
-├── ID
-└── INT
-```
+### 8.4 Expressões Aritméticas
 
-## 5.3 printAST()
-Objetivo: Exibir a árvore.
+**Operadores implementados:**
+```
++
+-
+*
+/
+%
+```
+**Precedência:**
 
-Exemplo:
-```
-PROGRAMA
-  DECL_VAR
-     TIPO(astro)
-     ID(velocidade)
-     INT(100)
-```
+1. Multiplicação, divisão e módulo;
+2. Soma e subtração.
 
-## 5.4 freeAST()
-Objetivo: Liberar toda a memória utilizada.
+**Justificativa:**
 
-## 6. Especificação da Gramática
+Evita ambiguidades sintáticas.
 
-### 6.1 Programa
+### 8.5 Operadores de Comparação
 ```
-PROGRAMA ::= orbitA
-    {
-        lista_comandos
-        decolar
-    }
-  
-```
-
-### 6.2 Lista de Comandos
-```
-lista_comandos ::= comando
-lista_comandos ::= lista_comandos comando  
-```
-
-### 6.3 Comandos
-```
-comando ::= declaracao
-comando ::= atribuicao
-comando ::= if_stmt
-comando ::= while_stmt
-comando ::= for_stmt
-comando ::= funcao
-comando ::= retorno
-```
-
-### 6.4 Declaração de Variável
-```
-sinal astro velocidade = 100;
-```
-
-Produção:
-
-```
-declaracao ::= sinal tipo ID
-            =
-            expressao
-            ;
-```
-
-### 6.5 Declaração de Vetor
-```
-frota astro sensores[10];
-```
-
-Produção:
-
-```
-declaracao ::= frota tipo ID
-            [
-                ID
-            ]
-            ;
-```
-
-### 6.6 Atribuição
-```
-velocidade = velocidade + 10;
-```
-
-Produção:
-
-```
-atribuicao  ::= ID
-                =
-                expressao
-                ;           
-```
-
-### 6.7 Expressões
-```
-a+b
-a-b
-a*b
-a/b
-a%b
-```
-
-Produção:
-
-```
-expressao ::= expressao + expressao
-expressao ::= expressao - expressao
-expressao ::= expressao * expressao
-expressao ::= expressao / expressao
-expressao ::= expressao % expressao  
-```
-
-### 6.8 Comparações
-```
-==
-!=
 <
 >
+==
+!=
 <=
 >=
 ```
 
+**Justificativa:**
 
-### 6.9 if
-```
-eclipse comparacao bloco
-```
+São utilizados em estruturas condicionais e de repetição.
 
-### 6.10 if else
-```
-eclipse comparacao bloco
-supernova bloco
-```
+### 8.6 Estruturas Condicionais
 
-### 6.11 while
-```
-orbitar comparacao bloco
-```
+**Palavras reservadas:**
 
-### 6.12 for
-```
-trajetoria i em 0 ate 10 passo 1
-```
+`
+eclipse
+supernova
+`
 
-### 6.12 Funções
-```
-propulsor astro soma(
-    astro a,
-    astro b
-)
-{
-}
-```
+**Justificativa:**
 
-### 6.13 Chamada de Funções
-```
-soma(10,20)
-```
+Permitem tomada de decisão simples e composta.
 
-### 6.14 Retorno
-```
-transmitir resultado;
-```
+### 8.7 Estruturas de Repetição
 
-## 7. Implementação do Lexer (orbit.l)
-O analisador léxico foi adaptado do Trabalho 1.
+**Palavras reservadas:**
 
-**Alteração principal:**
+`
+orbitar
+trajetoria
+`
 
-- Antes:
-```
-PRINT_TOKEN("KW_IF");
-```
+**Justificativa:**
 
-- Depois:
-```
-return KW_IF;
-```
+Permitem repetição condicional e controlada.
 
-**Explicação:**
-O Flen não imprime mais os tokens, ou seja, agora ele envia os tokens para o Bison.
+### 8.8 Funções
 
-**Uso do yylval:**
-Identificadores e números precisam enviar seus valores.
-- Exemplo:
-```
-yylval.str = strdup(yytext);
-return ID;
-```
+**Palavra reservada:**
 
-## 8. Estrutura Esperada da AST
-Exemplo:
+`
+propulsor
+`
 
-- Código:
+**Justificativa:**
+
+Permite modularização do código.
+
+### 8.9 Retorno
+
+**Palavra reservada:**
+
+`
+transmitir
+`
+
+**Justificativa:**
+
+Permite retornar valores de funções.
+
+---
+
+## 9. Exemplo de Árvore Sintática
+
+**Código:**
 ```
 sinal astro velocidade = 100;
 ```
 
-- Árvore:
+**AST:**
 ```
-DECL_VAR
-├── TIPO(astro)
+SINAL_VAR_INIT
+├── TYPE(astro)
 ├── ID(velocidade)
-└── INT(100)
+└── NUM_INT(100)
 ```
+---
 
-- Código:
-```
-eclipse velocidade > 50{
-}
-```
+## 10. Tratamento de Erros
 
-- Árvore:
-```
-IF
-├── >
-│ ├── ID(velocidade)
-│ └── INT(50)
-└── BLOCO
-```
+Foi implementada a função:
+
+`
+yyerror()
+`
+
+Responsável por informar erros sintáticos encontrados durante a análise.
+
+**Exemplo:**
+
+`
+Erro sintático na linha 12
+`
+
+**Conclusão:**
+
+O tratamento de erros permite identificar rapidamente problemas sintáticos.
+
+---
+
+## 11. Conclusão
+
+O analisador sintático da linguagem OrbitLang foi desenvolvido utilizando Flex e Bison, atendendo aos requisitos estabelecidos pela disciplina.
+
+A linguagem implementa variáveis, vetores, expressões aritméticas, estruturas condicionais, estruturas de repetição e funções com parâmetros e retorno tipado.
+
+Além disso, a construção automática da AST permite visualizar a estrutura sintática dos programas analisados, servindo como base para futuras etapas de um compilador.
