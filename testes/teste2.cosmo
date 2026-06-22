@@ -1,0 +1,11 @@
+orbitA {
+    sinal astro i = 0;
+    sinal astro limite = 5;
+
+    orbitar i < limite {
+        i = i + 1;
+    }
+
+    decolar
+}
+

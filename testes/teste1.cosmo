@@ -1,0 +1,13 @@
+orbitA {
+    sinal astro velocidade = 10;
+    sinal nebula energia = 75.5;
+    frota astro sensores[5];
+
+    eclipse energia > 50.0 {
+        velocidade = velocidade + 5;
+    } supernova {
+        velocidade = 0;
+    }
+
+    decolar
+}
