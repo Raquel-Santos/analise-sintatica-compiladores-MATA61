@@ -1,10 +1,10 @@
-# Documentação do Trabalho 2 – Analisador Sintático da Linguagem OrbitLang
+# Documentação do Trabalho 2 – Analisador Sintático da Linguagem CosmoScript
 
 ## 1. Introdução
 
-O objetivo deste trabalho foi desenvolver um analisador sintático para a linguagem OrbitLang utilizando a ferramenta Bison, integrado ao analisador léxico desenvolvido anteriormente com Flex no trabalho 1.
+O objetivo deste trabalho foi desenvolver um analisador sintático para a linguagem CosmoScript utilizando a ferramenta Bison, integrado ao analisador léxico desenvolvido anteriormente com Flex no trabalho 1.
 
-A linguagem OrbitLang foi criada especificamente para este trabalho e possui temática espacial inspirada na missão espacial Artemis II. A linguagem atende aos requisitos propostos nos requisitos do trabalho, permitindo a declaração de variáveis, vetores, funções, estruturas condicionais, estruturas de repetição e expressões aritméticas.
+A linguagem CosmoScript foi criada especificamente para este trabalho e possui temática espacial inspirada na missão espacial Artemis II. A linguagem atende aos requisitos propostos nos requisitos do trabalho, permitindo a declaração de variáveis, vetores, funções, estruturas condicionais, estruturas de repetição e expressões aritméticas.
 
 Além da análise sintática, foi implementada a geração automática de uma Árvore Sintática Abstrata (AST), permitindo visualizar a estrutura hierárquica do programa analisado.
 
@@ -91,7 +91,7 @@ As palavras reservadas e os tokens definidos anteriormente foram mantidos.
 
 ---
 
-## 4. Características da Linguagem OrbitLang
+## 4. Características da Linguagem CosmoScript
 
 ### 4.1 Paradigma
 
@@ -325,7 +325,7 @@ Todo programa deve possuir:
 
 **Conclusão:**
 
-Essa regra define a estrutura básica de qualquer programa OrbitLang.
+Essa regra define a estrutura básica de qualquer programa CosmoScript.
 
 ---
 
@@ -483,4 +483,4 @@ O tratamento de erros permite identificar rapidamente problemas sintáticos.
 
 ## 11. Conclusão
 
-O analisador sintático da linguagem OrbitLang foi desenvolvido utilizando Flex e Bison, atendendo aos requisitos estabelecidos pela disciplina. A linguagem implementa variáveis, vetores, expressões aritméticas, estruturas condicionais, estruturas de repetição e funções com parâmetros e retorno tipado. Além disso, a construção automática da AST permite visualizar a estrutura sintática dos programas analisados.
+O analisador sintático da linguagem CosmoScript foi desenvolvido utilizando Flex e Bison, atendendo aos requisitos estabelecidos pela disciplina. A linguagem implementa variáveis, vetores, expressões aritméticas, estruturas condicionais, estruturas de repetição e funções com parâmetros e retorno tipado. Além disso, a construção automática da AST permite visualizar a estrutura sintática dos programas analisados.
