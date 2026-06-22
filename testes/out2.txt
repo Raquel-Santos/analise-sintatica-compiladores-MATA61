@@ -1,0 +1,27 @@
+--- ÁRVORE SINTÁTICA GERADA ---
+MAIN_BLOCK
+ STMT_LIST
+  STMT_LIST
+   STMT_LIST
+    SINAL_VAR_INIT
+     TYPE (astro)
+     INIT
+      ID (i)
+      NUM_INT (0)
+   SINAL_VAR_INIT
+    TYPE (astro)
+    INIT
+     ID (limite)
+     NUM_INT (5)
+  ORBITAR_WHILE
+   COMPARISON
+    ID (i)
+    OP (<)
+    ID (limite)
+   BLOCK
+    STMT_LIST
+     ASSIGN
+      ID (i)
+      ADD
+       ID (i)
+       NUM_INT (1)
