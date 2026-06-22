@@ -72,7 +72,8 @@ Exemplo:
 
 ### 2.7 Observações
 
-Neste repositório foi inserido um diretório chamado "testes". Nele é possível ter acesso a três códigos (teste1.cosmo; teste2.cosmo; teste3.cosmo) escritos na linguagem CosmoScript, além das saídas geradas após a execução (./cosmoScript < nome_do_programa.cosmo). Para o teste1.cosmo, por exemplo, após a execução foi gerada a saída out1.txt.
+ Neste repositório foi inserido um diretório chamado "testes". Nele é possível ter acesso a três códigos (teste1.cosmo; teste2.cosmo; teste3.cosmo) escritos na linguagem CosmoScript, além das saídas geradas após a execução (./cosmoScript < nome_do_programa.cosmo). Para o teste1.cosmo, por exemplo, após a execução foi gerada a saída out1.txt.
+    
 ---
 
 ## 3. Alterações em Relação ao Trabalho 1
